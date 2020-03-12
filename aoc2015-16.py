@@ -19,50 +19,65 @@ for text in intext:
 #print(sues)
 
 
-# Kolla om grejerna i listan stämmer. Om varje grej stämmer alternativt inte finns alls, så är det rätt Sue.
 
-for sue in sues:
-    children = False
-    cats = False
-    samoyeds = False
-    pomeranians = False
-    akitas = False
-    vizslas = False
-    goldfish = False
-    trees = False
-    cars = False
-    perfumes = False
-    for thing in sues[sue]:
-#        print(thing)
-        if thing[0] == 'children':
-            children = (thing[1] == 3)
-        elif thing[0] == 'cats':
-            cats = (thing[1] == 7)
-        elif thing[0] == 'samoyeds':
-            samoyeds = (thing[1] == 2)
-        elif thing[0] == 'pomeranians':
-            pomeranians = (thing[1] == 3)
-        elif thing[0] == 'akitas':
-            akitas = (thing[1] == 0)
-        elif thing[0] == 'vizslas':
-            vizslas = (thing[1] == 0)
-        elif thing[0] == 'goldfish':
-            goldfish = (thing[1] == 5)
-        elif thing[0] == 'trees':
-            trees = (thing[1] == 3)
-        elif thing[0] == 'cars':
-            cars = (thing[1] == 2)
-        elif thing[0] == 'perfumes':
-            perfumes = (thing[1] == 1)
-            
-#    print(children, cats, samoyeds, pomeranians, akitas, vizslas, goldfish, trees, cars, perfumes)
-    print(cats)
-    if children:
-        print('children', sue)
-    if children and cats and samoyeds and pomeranians:
+def partone():
+    def checksue(aunt):
+        checklist = [('children', 3), ('cats', 7), ('samoyeds', 2), ('pomeranians', 3), ('akitas', 0), ('vizslas', 0), ('goldfish', 5), ('trees', 3), ('cars', 2), ('perfumes', 1)]
+        results = []
+        for check in checklist:
+            if [item for item in sues[aunt] if item == check] or not [item for item in sues[aunt] if item[0] == check[0]]:
+                pass
+#                results = results + [True]
+            else:
+                return(False)
+#        print(results)
+        return(True)
+
+    for sue in sues:
+        if checksue(sue):
+            print('The right aunt is', sue)
+
+def parttwo():
+    def checksue(aunt):
+        checklist = [('children', 3), ('cats', 7), ('samoyeds', 2), ('pomeranians', 3), ('akitas', 0), ('vizslas', 0), ('goldfish', 5), ('trees', 3), ('cars', 2), ('perfumes', 1)]
+        results = []
+        print(results)
+        for check in checklist:
+            if not [item for item in sues[aunt] if item[0] == check[0]]:
+#            if check[0] not in sues[aunt]:
+#                print(check, 'not in', sues[aunt])
+                return(False)
+            else:
+                #leta upp check hos sues[aunt] ...
+                for item in sues[aunt]:
+                    if check[0] == item[0]:
+                        if check[0] in ['cats', 'trees']:
+                            results = results + [item[1] > check[1]]
+                        elif check[0] in ['pomeranians', 'goldfish']:
+                            results = results + [item[1] < check[1]]
+                        else:
+                            results = results + [item[1] == check[1]]
+    #                else:
+    #                    results = results + [False]
+
+        print(results)
+        return(all(results))
+    
+##            if [item for item in sues[aunt] if item[0] == check[0]]:
+##                if check[0] == 'children':
+##                    sues[aunt
+##                or not [item for item in sues[aunt] if item[0] == check[0]]:
+##                pass
+###                results = results + [True]
+##            else:
+##                return(False)
+###        print(results)
+##        return(True)
+
+    for sue in sues:
         print(sue)
-#    print(children)
-#    print(thing[0])
+        if checksue(sue):
+            print('The right aunt is', sue)
 
 #partone()
-#parttwo()
+parttwo()
