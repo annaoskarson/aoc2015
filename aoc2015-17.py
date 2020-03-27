@@ -25,7 +25,4 @@ for r in results:
     else:
         break
 
-print("part two:", number)
-    
-
-
+print("Part two:", number)
