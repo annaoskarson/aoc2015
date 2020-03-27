@@ -30,7 +30,7 @@ def partone():
 
     for sue in sues:
         if checksue(sue):
-            print('The right aunt is', sue)
+            print('Part one: The right aunt is', sue)
 
 def parttwo():
     def checksue(aunt):
@@ -52,11 +52,10 @@ def parttwo():
             else:
                 result = result + [True]
         return(all(result))
-                
 
     for sue in sues:
         if checksue(sue):
-            print('The right aunt is', sue)
+            print('Part two: The right aunt is', sue)
 
 partone()
 parttwo()

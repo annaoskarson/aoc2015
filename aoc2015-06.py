@@ -1,22 +1,16 @@
-with open('aoc2015-6-input.txt') as file:
+with open('aoc2015-06-input.txt') as file:
     cmds = file.readlines()
 
 cmds = [line.strip() for line in cmds]
 #cmds = ['turn on 0,0 through 999,999']
 
-#print(cmds[0])
-#exit()
-
 def partone():
     bulbs = [ [ 0 for i in range(1000) ] for j in range(1000) ]
-#    print(len(bulbs), len(bulbs[0]))
-#    exit()
 
     def lighted(b):
         many = 0
         for a in range(1000):
             many = many + b[a].count(1)
-            #print(b[a].count(1))
         return(many)
 
     def act(c,do):
@@ -45,18 +39,15 @@ def partone():
             act(cmd[2:], 'off')
         elif cmd[:1] == ['toggle']:
             act(cmd[1:], 'tog')
-    print(lighted(bulbs))
+    print('Part one:', lighted(bulbs))
 
 def parttwo():
     bulbs = [ [ 0 for i in range(1000) ] for j in range(1000) ]
-#    print(len(bulbs), len(bulbs[0]))
-#    exit()
 
     def lighted(b):
         w = 0
         for a in range(1000):
             w = w + sum(b[a])
-            #print(b[a].count(1))
         return(w)
 
     def act(c,do):
@@ -83,8 +74,8 @@ def parttwo():
             act(cmd[2:], 'off')
         elif cmd[:1] == ['toggle']:
             act(cmd[1:], 'tog')
-    print(lighted(bulbs))
+    print('Part two:', lighted(bulbs))
 
 
-#partone()
+partone()
 parttwo()

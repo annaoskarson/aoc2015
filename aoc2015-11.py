@@ -64,11 +64,13 @@ def partone(passwd):
 #        print(nextp)
         if incstrait(nextp) and notiol(nextp) and twopairs(nextp):
             print(nextp)
+            return(nextp)
             found = True
         passwd = nextp
 
-
-partone(passwd)
-#parttwo()
+print('Part one:', end =" ")
+two = partone(passwd)
+print('Part two:', end =" ")
+partone(two)
 
 #hepxepqr fel

@@ -5,7 +5,7 @@ phrase = '1113122113'
 #phrase = '21'
 
 
-def partone(num):
+def first(num):
     def talk(number):
         new = ''
         count = 1
@@ -25,14 +25,15 @@ def partone(num):
         nnum = talk(num)
         i += 1
         num = nnum
-        print(i, len(num))
+        print(i)
         if i == 40:
-            print('After 40 times', len(num))
+            print('Part one: After 40 times', len(num))
         elif i == 50:
-            print('After 50 times', len(num))
+            print('Part one: After 50 times', len(num))
 
 
-def parttwo(num):
+def second(num):
+#I think this one never got correct ...
     def talk(number):
         new = ''
         count = 1
@@ -51,10 +52,10 @@ def parttwo(num):
     i = 0
     comp = ''
     while i < 50:
-        print(i, len(comp), len(num), length)
+#        print(i, len(comp), len(num), length)
         nnum = talk(num)
         i += 1
-        if i % 4 == 0: #i % 4 == 0:
+        if i % 4 == 0:
             #jämför comp med nnum bakifrån och ta bort alla som är samma
             c = 1
             while True: #c < len(comp):
@@ -67,16 +68,10 @@ def parttwo(num):
             length = length + c
             comp = nnum
         if i == 40:
-            print('After 40 times', length+len(nnum), 360154)
+            print('Part one: After 40 times', length+len(nnum), 360154)
         num = nnum
     length = length + len(num)
-    print('After 50 times', length)
+    print('Part two: After 50 times', length)
 
-partone(phrase)
-#parttwo(phrase)
-# 1826086 too low
-
-# Rätt   : 360154
-# 40 (1) : 163444 (89)
-# 40 (2) : 287978 (56)
-# 40 (4) : 337665 (45)
+first(phrase)
+second(phrase)

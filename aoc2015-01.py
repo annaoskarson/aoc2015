@@ -12,10 +12,8 @@ for step in path:
     elif step == ')':
         floor += -1
     if floor < 0 and not basement:
-        print('First time in basement is', i)
+        print('Part one: First time in basement is', i)
         basement = True
     i += 1
 
-print('He will finish on floor', floor)
-
-        
+print('Part two: He will finish on floor', floor)

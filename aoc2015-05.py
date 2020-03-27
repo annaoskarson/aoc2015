@@ -1,4 +1,4 @@
-with open('aoc2015-5-input.txt') as file:
+with open('aoc2015-05-input.txt') as file:
     words = file.readlines()
 
 words = [line.strip() for line in words]
@@ -33,7 +33,7 @@ def partone():
         if not(nopestrings(w)) and threevow(w) and twoinrow(w):
             nice += 1
             #print(w)
-    print(nice, 'words are nice.')
+    print('Part one:', nice, 'words are nice.')
 
 #It contains a pair of any two letters that appears at least twice in the string without overlapping,
 #like xyxy (xy) or aabcdefgaa (aa), but not like aaa (aa, but it overlaps).
@@ -61,13 +61,10 @@ def parttwo():
         return(False)
 
     nice = 0
-#    tw = 'uurcxstgmygtbstg'
-#    print(onebetween(tw),twicetwice(tw))
-#    exit()
     for w in words:
         if onebetween(w) and twicetwice(w):
             nice += 1
-    print(nice, 'words are nice.')
+    print('Part two:', nice, 'words are nice.')
 
 partone()
 parttwo()

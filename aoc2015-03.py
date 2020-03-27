@@ -1,10 +1,7 @@
-with open('aoc2015-3-input.txt') as file:
+with open('aoc2015-03-input.txt') as file:
     directions = file.readlines()
 
-#directions = [line.strip() for line in directions]
 directions = directions[0]
-#print(directions)
-
 
 def partone ():
 
@@ -12,9 +9,7 @@ def partone ():
 
     x = 0
     y = 0
-    #count = 0
     houses.add((x,y))
-    #print(houses)
     for d in directions:
         if d == '^':
             y += 1
@@ -25,10 +20,8 @@ def partone ():
         elif d == '>':
             x += 1
         houses.add((x,y))
-    #print(houses)
-    #print(count)
 
-    print('Santa deliviered to', len(houses), 'number of houses.')
+    print('Part one: Santa deliviered to', len(houses), 'number of houses.')
 
 def parttwo ():
     hh = set()
@@ -65,10 +58,7 @@ def parttwo ():
             hh.add((sx,sy))
         rturn = not(rturn)
 
-    print('They deliviered to', len(hh), 'number of houses.')
+    print('Part two: They deliviered to', len(hh), 'number of houses.')
 
 partone()
 parttwo()
-
-
-        

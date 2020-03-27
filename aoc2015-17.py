@@ -15,7 +15,7 @@ for i in range(len(containers)-1):
         if sum(a) == right:
             results = results + [a]
             many += 1
-print("Answer part one:", many)
+print("Part one:", many)
 
 results = (sorted(results,key=len))
 number = 0
@@ -25,7 +25,7 @@ for r in results:
     else:
         break
 
-print("Answer part two:", number)
+print("part two:", number)
     
 
 

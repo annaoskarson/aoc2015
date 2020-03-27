@@ -48,7 +48,7 @@ def partone(deers):
         dist = howfar(d, 2504)
         ddist.update({d : dist})
     (wd, wdeer) = (max(zip(ddist.values(), ddist.keys())))
-    print(wdeer, 'is the winner by distance with', wd, 'km.')
+    print('Part one:', wdeer, 'is the winner by distance with', wd, 'km.')
 
 def parttwo(deers):
     points = {}
@@ -65,7 +65,7 @@ def parttwo(deers):
                 points.update({d : points[d] + 1})
                 
     (wp, wdeer) = (max(zip(points.values(), points.keys())))
-    print(wdeer, 'is the winner by points with', wp, 'points.')
+    print('Part two:', wdeer, 'is the winner by points with', wp, 'points.')
 
 partone(deers)
 parttwo(deers)
