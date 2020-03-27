@@ -50,14 +50,6 @@ def partone(passwd):
             i += 1
         return(False)
 
-#    print('hijklmmn', incstrait('hijklmmn'), notiol('hijklmmn'), twopairs('hijklmmn'))
-#    print('abbceffg', incstrait('abbceffg'), notiol('abbceffg'), twopairs('abbceffg'))
-#    print('abbcegjk', incstrait('abbcegjk'), notiol('abbcegjk'), twopairs('abbcegjk'))
-#    print('hijklmmn', incstrait('hijklmmn'), notiol('hijklmmn'), twopairs('hijklmmn'))
-
-#    passwd = 'abcdefgh' #abcdffaa
-#    passwd = 'ghijklmn' #ghjaabcc
-    
     found = False
     while not found:
         nextp = incr(passwd)
@@ -72,5 +64,3 @@ print('Part one:', end =" ")
 two = partone(passwd)
 print('Part two:', end =" ")
 partone(two)
-
-#hepxepqr fel
