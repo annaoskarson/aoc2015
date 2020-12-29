@@ -1,10 +1,7 @@
 with open('aoc2015-03-input.txt') as file:
-    directions = file.readlines()
+    directions = file.read()
 
-directions = directions[0]
-
-def partone ():
-
+def partone (directions):
     houses = set()
 
     x = 0
@@ -20,45 +17,17 @@ def partone ():
         elif d == '>':
             x += 1
         houses.add((x,y))
-
-    print('Part one: Santa deliviered to', len(houses), 'number of houses.')
+    return(houses)
 
 def parttwo ():
-    hh = set()
-    rx = 0
-    ry = 0
-    sx = 0
-    sy = 0
-    hh.add((0,0))
-    rturn = False
-    for d in directions:
-        if d == '^':
-            if rturn:
-                ry += 1
-            else:
-                sy += 1
-        elif d == 'v':
-            if rturn:
-                ry -= 1
-            else:
-                sy -= 1
-        elif d == '<':
-            if rturn:
-                rx -= 1
-            else:
-                sx -= 1
-        elif d == '>':
-            if rturn:
-                rx += 1
-            else:
-                sx += 1
-        if rturn:
-            hh.add((rx,ry))
-        else:
-            hh.add((sx,sy))
-        rturn = not(rturn)
+    houses = set()
+    houses.add((0,0))
+    santa = directions[::2]
+    robot = directions[1::2]
+    houses = partone(santa) | partone(robot)
+    return(houses)
 
-    print('Part two: They deliviered to', len(hh), 'number of houses.')
-
-partone()
-parttwo()
+print('Advent of Code 2015, day 3 part 1')
+print(len(partone(directions)))
+print('Advent of Code 2015, day 3 part 2')
+print(len(parttwo()))

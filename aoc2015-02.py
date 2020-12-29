@@ -1,18 +1,16 @@
-with open('aoc2015-02-input.txt') as file:
-    dimensions = file.readlines()
 
-dimensions = [line.strip() for line in dimensions]
+with open('aoc2015-02-input.txt', 'r') as f:
+    dimensions = f.read().strip().split('\n')
 
-totalp = 0
-totalr = 0
+paper = 0
+ribbon = 0
 for one in dimensions:
-    one = one.split('x')
-    l,w,h = int(one[0]), int(one[1]), int(one[2])
-    paper = 2*l*w + 2*w*h + 2*h*l + min(l*w, w*h, h*l)
-    totalp = totalp + paper
+    [l,w,h] = list(map(int, one.split('x')))
+    paper += 2*l*w + 2*w*h + 2*h*l + min(l*w, w*h, h*l)
     box = [l,w,h]
-    ribbon = sorted(box)[0]*2 + sorted(box)[1]*2 + l*w*h
-    totalr = totalr + ribbon
+    ribbon += sorted(box)[0]*2 + sorted(box)[1]*2 + l*w*h
 
-print('Part one: The amount of paper is', totalp, 'squarefeet.')
-print('Part two: The amount of ribbon is', totalr, 'feet.')
+print('Advent of Code 2015, day 2 part 1')
+print(paper)
+print('Advent of Code 2015, day 2 part 2')
+print(ribbon)
