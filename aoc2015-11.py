@@ -1,66 +1,43 @@
+oldpass = 'hepxcrrq'
 
-passwd = 'hepxcrrq'
-passwd = 'hepxxyzz'
+def incr(w):
+    w[-1] += 1
+    if w[-1] > ord('z'):
+        w[-1] = ord('a')
+        w = incr(w[:-1]) + [ord('a')]
+    return(w)
+
+def valid(w):
+    return(pairs(w) and threestraight(w) and not nopeletter(w))
+
+def nopeletter(w):
+    return(any(c in w for c in [ord('i'), ord('o'), ord('l')]))
+
+def threestraight(w):
+    return(any(w[i]+2 == w[i+1]+1 == w[i+2] for i in range(len(w)-2)))
+
+def pairs(w):
+    for i in range(len(w)-1):
+        for j in range(i+2, len(w)-1):
+            if w[i] == w[i+1] and w[j] == w[j+1]:
+                return(True)
+
+    #return(len([i for i in range(len(w)-1) if w[i] == w[i+1]]) >= 2)
+
+def type(w):
+    return(''.join(map(chr, w)))
 
 
 def partone(passwd):
-    def incr(word):
-        w = list(word)
-        c = 1
-        while c < len(w)+1:
-#            print(w[-c])
-            if w[-c] == 'z':
-                w[-c] = 'a'
-                c += 1
-            else:
-                w[-c] = chr(ord(w[-c])+1)
-                if w[-c] == 'i':
-                    w[-c] = 'j'
-                elif w[-c] == 'o':
-                    w[-c] = 'p'
-                elif w[-c] == 'l':
-                    w[-c] = 'm'
-                word = ''.join(w)
-                return(word)
+    #passwd = 'hepxxyzz'
+    #print(pairs(passwd))
+    w = [ord(i) for i in list(passwd)]
+    w = incr(w)
+    while not valid(w):
+        w = incr(w)
+    return(type(w))
 
-    def incstrait(word):
-        c = 0
-        while c < len(word)-2:
-            w = list(word)
-            if ord(w[c]) == ord(w[c+1])-1 and ord(w[c]) == ord(w[c+2])-2:
-#                print(w[c], ord(w[c]), ord(w[c+1]), ord(w[c+2]))
-                return(True)
-            else:
-                c += 1
-        return(False)
-
-    def notiol(word):
-        return(not('i' in word or 'o' in word or 'l' in word))
-
-    def twopairs(word):
-        i = 0
-        while i < len(word)-3:
-            j = i+2
-            if word[i] == word[i+1]:
-                while j < len(word)-1:
-                    if word[j] == word[j+1]:
-                        return(True)
-                    else:
-                        j += 1
-            i += 1
-        return(False)
-
-    found = False
-    while not found:
-        nextp = incr(passwd)
-#        print(nextp)
-        if incstrait(nextp) and notiol(nextp) and twopairs(nextp):
-            print(nextp)
-            return(nextp)
-            found = True
-        passwd = nextp
-
-print('Part one:', end =" ")
-two = partone(passwd)
-print('Part two:', end =" ")
-partone(two)
+print('Advent of Code 2015, day 11 part 1')
+print(partone(oldpass))
+print('Advent of Code 2015, day 11 part 2')
+print(partone(partone(oldpass)))
