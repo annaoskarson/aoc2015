@@ -32,6 +32,6 @@ def parttwo():
     return(max(distance))
 
 print('Advent of Code 2015, day 9 part 1')
-print(partone()) #283 too high
+print(partone())
 print('Advent of Code 2015, day 9 part 2')
 print(parttwo())

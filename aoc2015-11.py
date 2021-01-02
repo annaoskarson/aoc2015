@@ -22,15 +22,11 @@ def pairs(w):
             if w[i] == w[i+1] and w[j] == w[j+1]:
                 return(True)
 
-    #return(len([i for i in range(len(w)-1) if w[i] == w[i+1]]) >= 2)
-
 def type(w):
     return(''.join(map(chr, w)))
 
 
 def partone(passwd):
-    #passwd = 'hepxxyzz'
-    #print(pairs(passwd))
     w = [ord(i) for i in list(passwd)]
     w = incr(w)
     while not valid(w):
