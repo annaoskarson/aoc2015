@@ -1,28 +1,25 @@
 import itertools
-
 with open('aoc2015-17-input.txt') as file:
-    intext = file.readlines()
-intext = [line.strip() for line in intext]
+    intext = file.read().strip().split('\n')
 
 containers = [int(x) for x in intext]
-
-right = 150
-many = 0
 results = []
-for i in range(len(containers)-1):
-    t = list(itertools.combinations(containers, i))
-    for a in t:
-        if sum(a) == right:
-            results = results + [a]
-            many += 1
-print("Part one:", many)
 
-results = (sorted(results,key=len))
-number = 0
-for r in results:
-    if len(r) == len(results[0]):
-        number += 1
-    else:
-        break
+def partone():
+    global results
+    right = 150
+    for i in range(len(containers)):
+        t = list(itertools.combinations(containers, i))
+        combos = [a for a in t if sum(a) == right]
+        results.extend(combos)
+    return(len(results))
 
-print("Part two:", number)
+def parttwo():
+    global results
+    results = (sorted(results,key=len))
+    return(len([len(r) for r in results if len(r) == len(results[0])]))
+
+print('Advent of Code 2015, day 16 part 1')
+print(partone())
+print('Advent of Code 2015, day 16 part 2')
+print(parttwo())
