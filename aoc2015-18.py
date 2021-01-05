@@ -19,7 +19,7 @@ def adjacent(coord):
     # return list of up to eight
     for xn in [x-1, x, x+1]:
         for yn in [y-1, y, y+1]:
-            if xn > -1 and xn < size+1 and yn > -1 and yn < size+1 and (xn, yn) != (x,y):
+            if -1 < xn < size+1 and -1 < yn < size+1 and (xn, yn) != (x,y):
                 adj.append((xn,yn))
     return(adj)
 
@@ -41,8 +41,8 @@ def change(ll):
 
     add_l = set()
     del_l = set()
-    for y in range(100):
-        for x in range(100):
+    for y in range(size):
+        for x in range(size):
             if (x,y) in ll and turnoff((x,y)):
                 del_l.add((x,y))
             elif (x,y) not in ll and turnon((x,y)):
@@ -50,18 +50,17 @@ def change(ll):
     return(ll.union(add_l).difference(del_l))
 
 def partone():
-    lights = init(intext)
-    #In your grid of 100x100 lights, given your initial configuration, how many lights are on after 100 steps?
-    for i in range(100):
+    lights = init(intext) # Make initial configuration.
+    for i in range(100): # Try 100 changes.
         lights = change(lights)
     return(len(lights))
 
 def parttwo():
-    always_on = {(0,0),(0,99),(99,0),(99,99)}
+    corners = {(0,0),(0,size-1),(size-1,0),(size-1,size-1)}
     # Corners are stuck on.
-    lights = init(intext).union(always_on)
+    lights = init(intext).union(corners)
     for i in range(100):
-        lights = change(lights).union(always_on)
+        lights = change(lights).union(corners)
     return(len(lights))
 
 print('Advent of Code 2015, day 18 part 1')
