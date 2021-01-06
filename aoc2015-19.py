@@ -2,9 +2,8 @@ import re
 with open('aoc2015-19-input.txt') as file:
     intext = file.read().strip().split('\n')
 
-#print(intext)
-
 table = {}
+translation = set()
 for i,row in enumerate(intext):
     if row == '':
         molecule = intext[i+1]
@@ -15,9 +14,7 @@ for i,row in enumerate(intext):
         if fr not in table:
             table[fr] = []
         table[fr].append(to)
-
-#print(molecule)
-#print(table)
+        translation.add((fr,to))
 
 def partone():
     alt = set()
@@ -31,7 +28,24 @@ def partone():
     return(len(alt))
 
 def parttwo():
-    return(0)
+    global translation
+    translation = sorted(translation, reverse = True, key = lambda x: len(x[1]))
+
+    m = molecule
+    num = 0
+
+    def doit(m, num):
+        # Testa först med de längsta "svaren"
+        for tr in translation:
+            num += m.count(tr[1])
+            # Substituera och fortsätt
+            m = m.replace(tr[1], tr[0])
+        return(m, num)
+
+    # Kolla om man till slut kan komma ända fram ...
+    while m != 'e':
+        m, num = doit(m, num)
+    return(num)
 
 print('Advent of Code 2015, day 19 part 1')
 print(partone())
