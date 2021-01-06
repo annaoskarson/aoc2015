@@ -15,8 +15,12 @@ for row in text:
 
     seating[person][neighbor] = units
 
-combos = list(itertools.permutations(seating.keys()))
+#combos = list(itertools.permutations(seating.keys()))
 # Some of the combos are the same, since it is a circular table, but I don't mind.
+
+persons = list(seating.keys())
+combos = [[persons[0]] + list(ll) for ll in list(itertools.permutations(persons[1:]))]
+# This way we only get twice as many combinations as we need, still have the mirroring left ...
 
 def points(persons):
     global seating
