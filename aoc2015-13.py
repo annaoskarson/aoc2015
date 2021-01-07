@@ -22,6 +22,12 @@ persons = list(seating.keys())
 combos = [[persons[0]] + list(ll) for ll in list(itertools.permutations(persons[1:]))]
 # This way we only get twice as many combinations as we need, still have the mirroring left ...
 
+# Get rid of the mirrored seatings.
+for c in combos:
+    c = [c[0]] + c[::-1][:-1] # Reversed list, but keep old first item first.
+    if c in combos:
+        combos.remove(c)
+
 def points(persons):
     global seating
     i = 0
