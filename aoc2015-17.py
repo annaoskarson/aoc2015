@@ -19,7 +19,7 @@ def parttwo():
     results = (sorted(results,key=len))
     return(len([len(r) for r in results if len(r) == len(results[0])]))
 
-print('Advent of Code 2015, day 16 part 1')
+print('Advent of Code 2015, day 17 part 1')
 print(partone())
-print('Advent of Code 2015, day 16 part 2')
+print('Advent of Code 2015, day 17 part 2')
 print(parttwo())
