@@ -1,7 +1,6 @@
 with open('aoc2015-21-input.txt') as file:
     intext = file.read().strip().split('\n')
 
-#print(intext)
 def init():
     boss = {}
     me = {}
@@ -10,6 +9,10 @@ def init():
         me[line.split(':')[0]] = 0
 
     me['Hit Points'] = 100
+    #boss['Hit Points'] = 104
+    #boss['Damage'] = 8
+    #boss['Armor'] = 1
+    #print(boss, me)
     return(me,boss)
 
 shop = {'Weapons':
@@ -32,27 +35,17 @@ shop = {'Weapons':
 'Defense +2': {'Cost': 40, 'Damage': 0, 'Armor':2},
 'Defense +3': {'Cost': 80, 'Damage': 0, 'Armor':3}}}
 
-def fight(attacker, defender):
-    defender['Hit Points'] -= max((attacker['Damage'] - defender['Armor']), 1)
-    return(attacker, defender)
-
 def win(p1, p2):
-    turn = 1
-    #print('player',p1)
-    while p1['Hit Points'] > 0 and p2['Hit Points'] > 0:
-        if turn == 1:
-            p1, p2 = fight(p1, p2)
-            turn = 2
-        else:
-            p2, p1 = fight(p2, p1)
-            turn = 1
-    if p1['Hit Points'] > 0:
+    import math
+    # Check which player can survive the most fight turns.
+    #print(p1['Hit Points'] / max((p2['Damage']- p1['Armor']), 1))
+    #print(p2['Hit Points'] / max((p1['Damage']- p2['Armor']), 1))
+    #win1 = math.ceil(p1['Hit Points'] / max((p2['Damage']- p1['Armor']), 1))
+    #win2 = math.ceil(p2['Hit Points'] / max((p1['Damage']- p2['Armor']), 1))
+    win1 = p1['Hit Points'] / max((p2['Damage']- p1['Armor']), 1)
+    win2 = p2['Hit Points'] / max((p1['Damage']- p2['Armor']), 1)
+    if win1 > win2:
         return(True)
-
-# Test data
-#me = {'Hit Points': 8, 'Damage': 5, 'Armor': 5}
-#boss = {'Hit Points': 12, 'Damage': 7, 'Armor': 2}
-#print(me, boss)
 
 def buy(items, me):
     p = 0
@@ -77,12 +70,13 @@ def partone():
             return(spent)
         else:
             return(1000) # A high cost ...
-    #You must buy exactly one weapon; no dual-wielding.
-    #Armor is optional, but you can't use more than one.
-    #You can buy 0-2 rings (at most one for each hand). You must use any items you buy.
-    #The shop only has one of each item, so you can't buy, for example, two rings of Damage +3.
+
     cost = 1000 #Start with a high cost ...
     for w in shop['Weapons']:
+        #You must buy exactly one weapon; no dual-wielding.
+        #Armor is optional, but you can't use more than one.
+        #You can buy 0-2 rings (at most one for each hand). You must use any items you buy.
+        #The shop only has one of each item, so you can't buy, for example, two rings of Damage +3.
         cost = min(match([w]), cost)
         for a in shop['Armor']:
             cost = min(match([w,a]), cost)
