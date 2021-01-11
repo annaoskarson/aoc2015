@@ -22,7 +22,6 @@ def size(g):
 
 def twoequal(g): # Check if g could be split into two equally heavy heaps.
     if sum(g) % 2 != 0: # Cannot split into two.
-        print('yes')
         return(False)
     for L in range(1, len(g)+1):
         for sublist in itertools.combinations(g, L):
@@ -44,7 +43,6 @@ def partone():
 
 def threeequal(g): # Check if g could be split into three equally heavy heaps.
     if sum(g) % 3 != 0: # Cannot split into three.
-        print('YES')
         return(False)
     for L in range(1, len(g)+1):
         for left in itertools.combinations(g, L):
