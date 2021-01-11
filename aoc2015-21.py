@@ -36,12 +36,6 @@ shop = {'Weapons':
 'Defense +3': {'Cost': 80, 'Damage': 0, 'Armor':3}}}
 
 def win(p1, p2):
-    import math
-    # Check which player can survive the most fight turns.
-    #print(p1['Hit Points'] / max((p2['Damage']- p1['Armor']), 1))
-    #print(p2['Hit Points'] / max((p1['Damage']- p2['Armor']), 1))
-    #win1 = math.ceil(p1['Hit Points'] / max((p2['Damage']- p1['Armor']), 1))
-    #win2 = math.ceil(p2['Hit Points'] / max((p1['Damage']- p2['Armor']), 1))
     win1 = p1['Hit Points'] / max((p2['Damage']- p1['Armor']), 1)
     win2 = p2['Hit Points'] / max((p1['Damage']- p2['Armor']), 1)
     if win1 > win2:
