@@ -67,7 +67,7 @@ def parttwo():
                     result = [front, size(front), EQ(front)]
     return(result[2])
 
-print('Advent of Code 2015, day 21 part 1')
+print('Advent of Code 2015, day 24 part 1')
 print(partone())
-print('Advent of Code 2015, day 21 part 2')
+print('Advent of Code 2015, day 24 part 2')
 print(parttwo())

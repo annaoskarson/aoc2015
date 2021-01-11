@@ -45,7 +45,7 @@ def partone():
 def parttwo():
     return(run(code, 1, 0))
 
-print('Advent of Code 2015, day 21 part 1')
+print('Advent of Code 2015, day 23 part 1')
 print(partone())
-print('Advent of Code 2015, day 21 part 2')
+print('Advent of Code 2015, day 23 part 2')
 print(parttwo())
