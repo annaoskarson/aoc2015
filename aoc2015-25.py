@@ -6,22 +6,22 @@ def nv(p):
 
 def value(row, col):
     val = 20151125
-    result = {}
+    #result = {}
     for max in range(1, qrow+qcol):
         r = max
         c = 1
 
         while r > 0:
-            result[(r,c)] = val
+            if (r,c) == (row, col):
+                return(val)
 
+            # Preparing for next round ...
             val = nv(val)
             r -= 1
             c += 1
 
-    return(result)
-
 def partone():
-    return(value(qrow, qcol)[(qrow,qcol)])
+    return(value(qrow, qcol))
 
 print('Advent of Code 2015, day 25 part 1')
 print(partone())
