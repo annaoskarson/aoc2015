@@ -25,7 +25,6 @@ def pairs(w):
 def type(w):
     return(''.join(map(chr, w)))
 
-
 def partone(passwd):
     w = [ord(i) for i in list(passwd)]
     w = incr(w)
